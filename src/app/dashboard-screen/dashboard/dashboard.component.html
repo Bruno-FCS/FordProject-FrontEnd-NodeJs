@@ -1,0 +1,89 @@
+<app-header></app-header>
+
+<h2 class="mt-3 text-center text-color">Dashboard Ford</h2>
+
+<div class="container mt-3" *ngIf="vehicles$ | async as vehicles">
+  <div class="row justify-content-center">
+    <app-card class="col-12 col-sm-6 col-lg-3 mb-3 mb-lg-0" [title]="'Veículo'">
+      <select
+        class="form-control mt-3"
+        type="number"
+        [(ngModel)]="vehicleId"
+        (ngModelChange)="sendVehicleId(vehicleId)"
+      >
+        <option *ngFor="let vehicle of vehicles" [ngValue]="vehicle.vehicle_id">
+          {{ vehicle.vehicle_model }}
+        </option>
+      </select>
+    </app-card>
+
+    <app-card
+      class="col-12 col-sm-6 col-lg-3 mb-3 mb-lg-0"
+      [title]="'Total de Vendas'"
+    >
+      <h2 class="text-info">
+        {{ chosenVehicle?.vehicle_total_volume }}
+      </h2>
+      <p>Unid.</p>
+    </app-card>
+
+    <app-card
+      class="col-12 col-sm-6 col-lg-3 mb-3 mb-lg-0"
+      [title]="'Conectados'"
+    >
+      <h2 class="text-info">
+        {{ chosenVehicle?.vehicle_connected }}
+      </h2>
+      <p>Unid.</p>
+    </app-card>
+
+    <app-card
+      class="col-12 col-sm-6 col-lg-3 mb-3 mb-lg-0"
+      [title]="'Update Software'"
+    >
+      <h2 class="text-info">
+        {{ chosenVehicle?.vehicle_software_updates }}
+      </h2>
+      <p>Unid.</p>
+    </app-card>
+  </div>
+</div>
+
+<div class="container mt-3 mb-3">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-12 col-sm-12 col-lg-6 mb-3 mb-lg-0">
+      <img
+        class="img-fluid"
+        src="assets/img/{{ chosenVehicle?.vehicle_model }}.png"
+        alt="Imagem do veículo escolhido"
+      />
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3 mb-3 mb-sm-0">
+      <div class="card">
+        <div class="card-header card-color"><h5>Conectados %</h5></div>
+        <div class="card-body">
+          <div id="chart_1" class="chart"></div>
+          <div class="percentage text-color">{{ formatedConnectedRatio }}%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-header card-color"><h5>Update Software %</h5></div>
+        <div class="card-body">
+          <div id="chart_2" class="chart"></div>
+          <div class="percentage text-color">{{ formatedUpdatedRatio }}%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <app-horizontal-table></app-horizontal-table>
+    <app-vertical-table></app-vertical-table>
+  </div>
+</div>

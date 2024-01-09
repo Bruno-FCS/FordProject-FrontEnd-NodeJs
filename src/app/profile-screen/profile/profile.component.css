@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
+.text-color {
+  color: rgb(40, 97, 159);
+}
+
+.btn-close-config {
+  font-weight: 800;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.font-size {
+  font-size: 20px;
+}
+
+.text-align {
+  text-align: end;
+}
+
+.fade-out {
+  animation: fadeOut ease 0.5s;
+  -webkit-animation: fadeOut ease 0.5s;
+  -moz-animation: fadeOut ease 0.5s;
+  -o-animation: fadeOut ease 0.5s;
+  -ms-animation: fadeOut ease 0.5s;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}

@@ -1,0 +1,61 @@
+<div class="form-container">
+  <div class="d-flex justify-content-center mb-2">
+    <img
+      class="img-width"
+      src="../../../assets/img/ford.png"
+      alt="Logo da Ford"
+    />
+  </div>
+
+  <h4 class="text-center text-color">Bem vindo!</h4>
+
+  <app-message
+    *ngIf="error == true"
+    message="Usuário ou senha inválido"
+  ></app-message>
+
+  <form class="form mt-3 form-width" (ngSubmit)="login()" #loginForm="ngForm">
+    <div class="form-group mb-3 field-width m-auto">
+      <input
+        class="form-control"
+        placeholder="Insira seu usuário"
+        [(ngModel)]="user_name"
+        name="user_name"
+        #userField="ngModel"
+        required
+      />
+      <app-message
+        *ngIf="userField.invalid && userField.touched"
+        message="Campo usuário obrigatório"
+      ></app-message>
+    </div>
+
+    <div class="form-group mb-2 field-width m-auto">
+      <input
+        class="form-control"
+        placeholder="Insira sua senha"
+        type="password"
+        [(ngModel)]="user_password"
+        name="user_password"
+        #passwordField="ngModel"
+        required
+      />
+      <app-message
+        *ngIf="passwordField.invalid && passwordField.touched"
+        message="Campo senha obrigatório"
+      ></app-message>
+    </div>
+
+    <div class="mb-2 margin">
+      Ainda não possui cadastro? <a [routerLink]="['register']">Registre-se</a>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-secondary field-width margin"
+      [disabled]="loginForm.invalid"
+    >
+      Entrar
+    </button>
+  </form>
+</div>

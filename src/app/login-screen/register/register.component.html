@@ -1,0 +1,156 @@
+<div class="form-container">
+  <div class="d-flex justify-content-center mb-2">
+    <img
+      class="img-width"
+      src="../../../assets/img/ford.png"
+      alt="Logo da Ford"
+    />
+  </div>
+
+  <h4 class="text-center text-color">Faça seu registro!</h4>
+
+  <app-message
+    *ngIf="error == true"
+    message="Usuário ou e-mail já cadastrados"
+  ></app-message>
+
+  <form
+    class="form mt-3 form-width"
+    [formGroup]="registerForm"
+    *ngIf="registerForm"
+    (ngSubmit)="register()"
+  >
+    <div class="form-group mb-3 field-width m-auto">
+      <input
+        class="form-control"
+        placeholder="Usuário"
+        formControlName="user_name"
+      />
+      <app-message
+        *ngIf="
+        registerForm.get('user_name')?.errors?.['required'] &&
+        registerForm.get('user_name')?.touched
+      "
+        message="Campo usuário obrigatório"
+      ></app-message>
+      <app-message
+        *ngIf="
+        registerForm.get('user_name')?.errors?.['minlength'] &&
+        registerForm.get('user_name')?.touched
+      "
+        message="Campo usuário deve ter ao menos 5 caracteres"
+      ></app-message>
+    </div>
+
+    <div class="form-group mb-3 field-width m-auto">
+      <input
+        class="form-control"
+        placeholder="E-mail"
+        formControlName="user_email"
+      />
+      <app-message
+        *ngIf="
+        registerForm.get('user_email')?.errors?.['required'] &&
+        registerForm.get('user_email')?.touched
+      "
+        message="Campo e-mail obrigatório"
+      ></app-message>
+      <app-message
+        *ngIf="
+        registerForm.get('user_email')?.errors?.['email'] &&
+        registerForm.get('user_email')?.touched
+      "
+        message="E-mail inválido"
+      ></app-message>
+    </div>
+
+    <div class="form-group mb-3 field-width m-auto">
+      <input
+        class="form-control"
+        placeholder="Nome completo"
+        formControlName="user_full_name"
+      />
+      <app-message
+        *ngIf="
+          registerForm.get('user_full_name')?.errors &&
+          registerForm.get('user_full_name')?.touched
+        "
+        message="Campo nome completo obrigatório"
+      ></app-message>
+    </div>
+
+    <div class="form-group mb-3 field-width m-auto">
+      <input
+        class="form-control"
+        placeholder="Senha"
+        type="password"
+        formControlName="user_password"
+      />
+      <app-message
+        *ngIf="
+        registerForm.get('user_password')?.errors?.['required'] &&
+        registerForm.get('user_password')?.touched
+      "
+        message="Campo senha obrigatório"
+      ></app-message>
+      <app-message
+        *ngIf="
+        registerForm.get('user_password')?.errors?.['minlength'] &&
+        registerForm.get('user_password')?.touched
+      "
+        message="Campo senha deve ter ao menos 6 caracteres"
+      ></app-message>
+    </div>
+
+    <div class="form-group mb-2 field-width m-auto">
+      <input
+        class="form-control"
+        placeholder="Confirmar senha"
+        type="password"
+        formControlName="user_password_confirm"
+      />
+      <app-message
+        *ngIf="
+        registerForm.get('user_password_confirm')?.errors?.['equalsTo']
+      "
+        message="Senhas não coincidem"
+      ></app-message>
+    </div>
+
+    <div class="form-group mb-2 field-width m-auto">
+      <input
+        class="form-control"
+        type="checkbox"
+        class="checkbox"
+        formControlName="checkbox"
+      />
+      <span>
+        Li e concordo com os
+        <a href="https://www.ford.com.br/politica-de-privacidade/"
+          >termos e condições</a
+        >.</span
+      >
+    </div>
+
+    <div class="form-group mb-2 field-width m-auto">
+      <ngx-recaptcha2
+        #captchaElem
+        [siteKey]="siteKey"
+        formControlName="recaptcha"
+      >
+      </ngx-recaptcha2>
+    </div>
+
+    <div class="mb-2 margin">
+      Já possui cadastro? <a [routerLink]="['']">Faça login</a>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-secondary field-width margin"
+      [disabled]="registerForm.invalid"
+    >
+      Registrar
+    </button>
+  </form>
+</div>

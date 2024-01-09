@@ -1,0 +1,32 @@
+.form-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.form-width {
+  width: 380px;
+}
+
+.field-width {
+  width: 95%;
+}
+
+.img-width {
+  width: 300px;
+}
+
+.text-color {
+  color: rgb(40, 97, 159);
+}
+
+a {
+  text-decoration: none;
+}
+
+.margin {
+  margin-left: 9.5px;
+}
